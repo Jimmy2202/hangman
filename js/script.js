@@ -1,4 +1,5 @@
 /* ARTHUR DE OLIVEIRA PINTO 27/10/2023*/
+/* ----------------------------- Manipulação DOM ---------------------------------*/ 
 let wordlen = document.querySelector('.tampalavra')
 let cont = document.querySelector('.container')
 let palmostr = document.querySelector('.palavra_mostrada')
@@ -7,23 +8,24 @@ let tipo = document.createElement("div")
 let erros = document.createElement("div")
 let chosenLetters = document.querySelector('.LetrasEscolhidas')
 let msgword = document.querySelector('.msg_word')
-let arr = ""
+let canva = document.getElementById("cv")
+let ctx = canva.getContext("2d")
+let msg = document.createElement("div")
+const bod = document.body
+/* ----------------------------- Adicionar classes ---------------------------------*/ 
+tipo.classList.add("tipo")
+erros.classList.add("erro")
+msg.classList.add("Mensagem")
+/* ----------------------------- Adicionar ao body ---------------------------------*/
+bod.appendChild(tipo)
+bod.appendChild(erros)
+bod.appendChild(msg)
+/* ----------------------------- Variáveis globais ---------------------------------*/
 let errorcount = 0
 let showword = ""
 let universalword = ""
-let canva = document.getElementById("cv")
-let ctx = canva.getContext("2d")
-const otherletters = ['Ç', 'Á', 'Ã', 'É', 'Í', 'Ó', 'Ú']
-const bod = document.body
-tipo.classList.add("tipo")
-erros.classList.add("erro")
-bod.appendChild(tipo)
-bod.appendChild(erros)
-
-let msg = document.createElement("div")
-msg.classList.add("Mensagem")
+let arr = ""
 msg.style.display = "none"
-bod.appendChild(msg)
 
 
 for (let i = 0; i < 26; i++) {
@@ -33,15 +35,17 @@ for (let i = 0; i < 26; i++) {
     cont.appendChild(button)
 }
 
+let butWord = document.querySelectorAll('.btn')
+
 const fetchWord = async () => {
     const jsonn = await fetch(`./dados.json`)
     const data = await jsonn.json()
     const obj = data.palavras[Math.floor(Math.random() * data.palavras.length)]
-
     return obj
 }
 
 const funcCanva = () => {
+
     if (errorcount == 1) {
         let centerX = 100
         let centerY = 40
@@ -95,7 +99,6 @@ const funcCanva = () => {
         setTimeout(() => {
             ctx.clearRect(0, 0, canva.width, canva.height)
         }, 2000);
-
     }
 }
 
@@ -108,12 +111,7 @@ function modString(x) {
     return str
 }
 
-const main = async () => {
-    errorcount = 0
-    const obj = await fetchWord()
-    const word = obj.palavra
-    universalword = word
-
+const initialDraw = () => {
     ctx.beginPath()
     ctx.lineWidth = 8
     ctx.strokeStyle = "white"
@@ -127,7 +125,15 @@ const main = async () => {
     ctx.moveTo(16, 20)
     ctx.lineTo(110, 20)
     ctx.stroke()
+}
 
+const main = async () => {
+    errorcount = 0
+    const obj = await fetchWord()
+    const word = obj.palavra
+    universalword = word
+
+    initialDraw()
     tipo.innerHTML = `${obj.tipo}`
     erros.innerHTML = `Erros: ${errorcount}`
     wordlen.innerHTML = `O tamanho da palavra: ${word.length} letras`
@@ -197,26 +203,7 @@ function verifyOtherLetter(letter,x) {
     return x
 }
 
-function verifyWord(character, word) {
-
-    let showwordArray = showword.split('');
-    let x = 0;
-
-    console.log(universalword)
-    if (character == 'A' || character == 'C' || character == 'E' || character == 'I' || character == "O" || character == "U") {
-        x = verifyOtherLetter(character,x)
-    } else {
-
-        for (let i = 0; i < word.length; i++) {
-            if (word[i].toLowerCase() == character.toLowerCase()) {
-                showwordArray[i] = character.toLowerCase()
-                showword = showwordArray.join('')
-                palmostr.innerHTML = showword
-                x++
-            }
-        }
-    }
-
+const verifyWinner = () => {
     if (showword.toLowerCase() == universalword.toLocaleLowerCase()) {
         msg.innerHTML = "PARABÉNS VOCÊ VENCEU"
         chosenLetters.innerHTML = arr = ""
@@ -226,13 +213,9 @@ function verifyWord(character, word) {
             ctx.clearRect(0, 0, canva.width, canva.height)
         }, 2000);
     }
+}
 
-    if (x == 0) {
-        errorcount++
-        funcCanva()
-        erros.innerHTML = `Erros: ${errorcount}`
-    }
-
+const verifyLoser = () => {
     if (errorcount == 6) {
         msg.innerHTML = "Que Pena Você Perdeu"
         chosenLetters.innerHTML = arr = ""
@@ -242,7 +225,36 @@ function verifyWord(character, word) {
             msg.style.display = "none";
         }, 2000);
     }
+}
 
+const countError = x => {
+    if (x == 0) {
+        errorcount++
+        funcCanva()
+        erros.innerHTML = `Erros: ${errorcount}`
+    }
+}
+
+function verifyWord(character, word) {
+    let showwordArray = showword.split('');
+    let x = 0
+
+    if (character == 'A' || character == 'C' || character == 'E' || character == 'I' || character == "O" || character == "U") {
+        x = verifyOtherLetter(character,x)
+    } else {
+        for (let i = 0; i < word.length; i++) {
+            if (word[i].toLowerCase() == character.toLowerCase()) {
+                showwordArray[i] = character.toLowerCase()
+                showword = showwordArray.join('')
+                palmostr.innerHTML = showword
+                x = 1
+            }
+        }
+    }
+
+    verifyWinner()
+    countError(x)
+    verifyLoser()
 }
 
 reload.addEventListener('click', () => {
@@ -251,7 +263,6 @@ reload.addEventListener('click', () => {
     chosenLetters.innerHTML = arr = ""
 })
 
-let butWord = document.querySelectorAll('.btn')
 butWord.forEach((button) => {
     button.addEventListener('click', (event) => {
         const letra = event.target.textContent
