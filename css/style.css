@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +8,9 @@
 
 h1 {
     color: #fff;
+    font-family: 'Press Start 2P';
     position: absolute;
-    top : 0%;
+    top : 2%;
 }
 
 .tampalavra {
@@ -17,19 +20,21 @@ h1 {
 }
 
 .palavra_mostrada {
+    text-align: center;
     color: white;
-    font-size:50px;
+    font-size: 92%;
     font-weight: 600;
-    font-style: oblique;
+    font-family: 'Press Start 2P';
     position: absolute;
-    top : 15%
+    width: 100%;
+    top: 50%;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #0043de, #883fed);
+    background: linear-gradient(to bottom, black, purple);
     min-height: 100vh;
     min-width: 100vh;
 }
@@ -52,6 +57,16 @@ body {
     border-radius: 6px;
     padding: 0.5%;
     margin: 0.5%;
+}
+
+.container_img {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 20%;
+    top: 11%;
 }
 
 .reload {
@@ -100,6 +115,13 @@ body {
     left: 10%;
 }
 
+.tipo:hover,
+.LetrasEscolhidas:hover,
+.erro:hover {
+    color:rgb(122, 0, 179);
+    background-color: azure;
+}
+
 .erro {
     color:rgb(255, 255, 255);
     border-radius: 9px;
@@ -125,7 +147,9 @@ body {
 
 .canva {
     color:rgb(255, 255, 255);
+    background: linear-gradient(to bottom, black, purple);
     border: 4px groove rgb(255, 255, 255);
+    border-radius: 7px;
     position: absolute;
     padding: 0.5%;
     top: 65%;
@@ -136,7 +160,8 @@ body {
     color: #fff;
     position: absolute;
     bottom: 60%;
-    font-weight: 700;
+    font-weight: 900;
+    font-size: 150%;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 6px;
     padding: 0.5%;
@@ -150,4 +175,14 @@ body {
     font-weight: 700;
     padding: 0.5%;
     margin: 0.5%;
+}
+
+.painel {
+    width: 70%;
+    height: 80%;
+    font-size:50px;
+    font-weight: 600;
+    font-style: oblique;
+    position: absolute;
+    top : 15%
 }
