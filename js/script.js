@@ -1,9 +1,10 @@
 /* ARTHUR DE OLIVEIRA PINTO 27/10/2023*/
-/* ----------------------------- Manipulação DOM ---------------------------------*/ 
+/* ----------------------------- Manipulação DOM ---------------------------------*/
 let wordlen = document.querySelector('.tampalavra')
 let cont = document.querySelector('.container')
 let palmostr = document.querySelector('.palavra_mostrada')
 let reload = document.querySelector('.reload')
+let painel = document.querySelector('.painel')
 let tipo = document.createElement("div")
 let erros = document.createElement("div")
 let chosenLetters = document.querySelector('.LetrasEscolhidas')
@@ -12,7 +13,7 @@ let canva = document.getElementById("cv")
 let ctx = canva.getContext("2d")
 let msg = document.createElement("div")
 const bod = document.body
-/* ----------------------------- Adicionar classes ---------------------------------*/ 
+/* ----------------------------- Adicionar classes ---------------------------------*/
 tipo.classList.add("tipo")
 erros.classList.add("erro")
 msg.classList.add("Mensagem")
@@ -22,6 +23,7 @@ bod.appendChild(erros)
 bod.appendChild(msg)
 /* ----------------------------- Variáveis globais ---------------------------------*/
 let errorcount = 0
+let array = []
 let showword = ""
 let universalword = ""
 let arr = ""
@@ -105,7 +107,7 @@ const funcCanva = () => {
 function modString(x) {
     let str = ""
     for (i = 0; i < x; i++) {
-        str += '-'
+        str += "__ "
     }
 
     return str
@@ -136,66 +138,82 @@ const main = async () => {
     initialDraw()
     tipo.innerHTML = `${obj.tipo}`
     erros.innerHTML = `Erros: ${errorcount}`
-    wordlen.innerHTML = `O tamanho da palavra: ${word.length} letras`
+    wordlen.innerHTML = `Tamanho da palavra: ${word.length} letras`
     showword = modString(word.length)
     palmostr.innerHTML = showword
+    reajustTam(palmostr.clientWidth)
 }
 
-function verifyOtherLetter(letter,x) {
-    let showwordArray = showword.split('');
+const reajustTam = newwidth => {
+    painel.style.width = `${newwidth}px`
+}
 
-    console.log(universalword)
-    if (letter.toLowerCase() == 'c') {
+function verifyOtherLetter(character, x) {
+    let newstr = ""
+
+    if (character.toLowerCase() == 'c') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'c' || universalword[i].toLowerCase() == 'ç') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
-    } else if (letter.toLowerCase() == 'a') {
+    } else if (character.toLowerCase() == 'a') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'a' || universalword[i].toLowerCase() == 'ã' || universalword[i].toLowerCase() == 'á') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
-    } else if (letter.toLowerCase() == 'e') {
+    } else if (character.toLowerCase() == 'e') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'e' || universalword[i].toLowerCase() == 'é') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
-    } else if (letter.toLowerCase() == 'i') {
+    } else if (character.toLowerCase() == 'i') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'i' || universalword[i].toLowerCase() == 'í') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
-    } else if (letter.toLowerCase() == 'o') {
+    } else if (character.toLowerCase() == 'o') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'o' || universalword[i].toLowerCase() == 'ó' || universalword[i].toLowerCase() == 'õ') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
-    } else if (letter.toLowerCase() == 'u') {
+    } else if (character.toLowerCase() == 'u') {
         for (let i = 0; i < universalword.length; i++) {
             if (universalword[i].toLowerCase() == 'u' || universalword[i].toLowerCase() == 'ú') {
-                showwordArray[i] = universalword[i].toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
+                reajustTam(palmostr.clientWidth)
                 x++
             }
         }
@@ -204,7 +222,7 @@ function verifyOtherLetter(letter,x) {
 }
 
 const verifyWinner = () => {
-    if (showword.toLowerCase() == universalword.toLocaleLowerCase()) {
+    if (showword.split(' ').join('').toLowerCase() == universalword.toLocaleLowerCase()) {
         msg.innerHTML = "PARABÉNS VOCÊ VENCEU"
         chosenLetters.innerHTML = arr = ""
         msg.style.display = "block";
@@ -212,7 +230,9 @@ const verifyWinner = () => {
             msg.style.display = "none";
             ctx.clearRect(0, 0, canva.width, canva.height)
         }, 2000);
+        return 1
     }
+    return 0
 }
 
 const verifyLoser = () => {
@@ -220,11 +240,13 @@ const verifyLoser = () => {
         msg.innerHTML = "Que Pena Você Perdeu"
         chosenLetters.innerHTML = arr = ""
         msg.style.display = "block";
-        palmostr.innerHTML = universalword
+        palmostr.innerHTML = universalword.split('').join(' ').toUpperCase()
         setTimeout(() => {
             msg.style.display = "none";
         }, 2000);
+        return 1
     }
+    return 0
 }
 
 const countError = x => {
@@ -236,18 +258,20 @@ const countError = x => {
 }
 
 function verifyWord(character, word) {
-    let showwordArray = showword.split('');
     let x = 0
 
+    console.log(word)
     if (character == 'A' || character == 'C' || character == 'E' || character == 'I' || character == "O" || character == "U") {
-        x = verifyOtherLetter(character,x)
+        x = verifyOtherLetter(character, x)
     } else {
         for (let i = 0; i < word.length; i++) {
             if (word[i].toLowerCase() == character.toLowerCase()) {
-                showwordArray[i] = character.toLowerCase()
-                showword = showwordArray.join('')
+                newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
+                console.log(newstr)
+                showword = newstr
                 palmostr.innerHTML = showword
-                x = 1
+                reajustTam(palmostr.clientWidth)
+                x++
             }
         }
     }
@@ -261,6 +285,7 @@ reload.addEventListener('click', () => {
     main()
     msg.style.display = "none"
     chosenLetters.innerHTML = arr = ""
+    ctx.clearRect(0, 0, canva.width, canva.height)
 })
 
 butWord.forEach((button) => {
@@ -272,7 +297,7 @@ butWord.forEach((button) => {
             setTimeout(() => {
                 msgword.innerHTML = ""
             }, 3000)
-        } else {
+        } else if (verifyLoser() != 1 && verifyWinner() != 1) {
             arr += `${letra} - `
             chosenLetters.innerHTML = arr
             verifyWord(letra, universalword)
