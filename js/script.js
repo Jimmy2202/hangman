@@ -164,7 +164,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'a') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'a' || universalword[i].toLowerCase() == 'ã' || universalword[i].toLowerCase() == 'á' || universalword[i].toLowerCase() == 'â') {
+            if (universalword[i].toLowerCase() == 'a' || universalword[i].toLowerCase() == 'ã' || universalword[i].toLowerCase() == 'á') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
@@ -175,7 +175,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'e') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'e' || universalword[i].toLowerCase() == 'é' || universalword[i].toLowerCase() == 'ê') {
+            if (universalword[i].toLowerCase() == 'e' || universalword[i].toLowerCase() == 'é') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
@@ -197,7 +197,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'o') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'o' || universalword[i].toLowerCase() == 'ó' || universalword[i].toLowerCase() == 'õ' || universalword[i].toLowerCase() == 'ô') {
+            if (universalword[i].toLowerCase() == 'o' || universalword[i].toLowerCase() == 'ó' || universalword[i].toLowerCase() == 'õ') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
@@ -254,6 +254,10 @@ const countError = x => {
         errorcount++
         funcCanva()
         erros.innerHTML = `Erros: ${errorcount}`
+        erros.style.backgroundColor = "rgb(255,0,0,0.4)"
+        setTimeout(() => {
+            erros.style.backgroundColor = "rgb(0,0,0,0.5)"
+        },500)
     }
 }
 
