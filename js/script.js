@@ -134,7 +134,6 @@ const main = async () => {
     const obj = await fetchWord()
     const word = obj.palavra
     universalword = word
-
     initialDraw()
     tipo.innerHTML = `${obj.tipo}`
     erros.innerHTML = `Erros: ${errorcount}`
@@ -145,7 +144,8 @@ const main = async () => {
 }
 
 const reajustTam = newwidth => {
-    painel.style.width = `${newwidth}px`
+    let porc = (newwidth * 20)/100
+    painel.style.width = `${newwidth + porc}px`
 }
 
 function verifyOtherLetter(character, x) {
