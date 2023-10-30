@@ -6,41 +6,51 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    border: 3px solid white;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, black, purple);
+    background-size: 100vh 100vh;
+}
+
 h1 {
+    border: solid greenyellow 3px;
     color: #fff;
+    font-size: 150%;
     font-family: 'Press Start 2P';
     position: absolute;
     top : 2%;
 }
 
 .tampalavra {
+    border: solid 2px white;
     color: #fff;
     position: absolute;
-    top : 10%
+    top : 10%;
+    font-size: 150%;
 }
 
 .palavra_mostrada {
+    border: solid red 3px;
     text-align: center;
     color: white;
     font-size: 92%;
     font-weight: 600;
     font-family: 'Press Start 2P';
     position: absolute;
-    width: 100%;
+    max-width: 100%;
     top: 50%;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, black, purple);
-    min-height: 100vh;
-    min-width: 100vh;
-}
-
 .container {
-    width: 90%;
+    border: solid 3px green;
+    width: 70%;
+    top: 50%;
+    margin: 0 auto;
     position: absolute;
     display: flex;
     flex-wrap: wrap;
@@ -60,17 +70,20 @@ body {
 }
 
 .container_img {
+    border: 2px solid yellow;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 95%;
+    margin: 0 auto;
     width: 40%;
-    height: 20%;
+    height: 10%;
     top: 11%;
 }
 
 .reload {
-    flex-basis: calc(4% - 0px);
+    flex-basis: calc(4%);
     position: absolute;
     color: #fff;
     bottom: 10%;
@@ -131,7 +144,7 @@ body {
     position: absolute;
     padding: 2%;
     top: 4%;
-    left: 80%;
+    right: 10%;
 }
 
 .Mensagem {
@@ -153,7 +166,7 @@ body {
     position: absolute;
     padding: 0.5%;
     top: 65%;
-    left: 80%;
+    left: 70%;
 }
 
 .LetrasEscolhidas {
@@ -168,6 +181,31 @@ body {
     margin: 0.5%;
 }
 
+@media (max-width: 768px){
+    .container_img {
+        width: 70%;
+        height: 20%;
+        top: 11%;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 120%;
+        font-family: 'Press Start 2P';
+        position: absolute;
+        top : 2%;
+    }
+
+    .palavra_mostrada {
+        font-size: 70%;
+        top: 70%;
+    }
+
+    .tampalavra {
+        font-size: 90%;
+    }
+}
+
 .msg_word {
     color: #fff;
     position: absolute;
@@ -178,11 +216,15 @@ body {
 }
 
 .painel {
-    width: 70%;
+    width: 40%;
     height: 80%;
-    font-size:50px;
-    font-weight: 600;
-    font-style: oblique;
     position: absolute;
-    top : 15%
+    max-width: 100%;
+    top : 30%
+}
+
+#cv {
+    border: 2px red solid;
+    height: 100%;
+    width: 100%;
 }
