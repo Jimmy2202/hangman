@@ -164,7 +164,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'a') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'a' || universalword[i].toLowerCase() == 'ã' || universalword[i].toLowerCase() == 'á') {
+            if (universalword[i].toLowerCase() == 'a' || universalword[i].toLowerCase() == 'ã' || universalword[i].toLowerCase() == 'á' || universalword[i].toLowerCase() == 'â') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
@@ -175,7 +175,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'e') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'e' || universalword[i].toLowerCase() == 'é') {
+            if (universalword[i].toLowerCase() == 'e' || universalword[i].toLowerCase() == 'é' || universalword[i].toLowerCase() == 'ê') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
@@ -197,7 +197,7 @@ function verifyOtherLetter(character, x) {
         }
     } else if (character.toLowerCase() == 'o') {
         for (let i = 0; i < universalword.length; i++) {
-            if (universalword[i].toLowerCase() == 'o' || universalword[i].toLowerCase() == 'ó' || universalword[i].toLowerCase() == 'õ') {
+            if (universalword[i].toLowerCase() == 'o' || universalword[i].toLowerCase() == 'ó' || universalword[i].toLowerCase() == 'õ' || universalword[i].toLowerCase() == 'ô') {
                 newstr = showword.substring(0,i*3) + " " + `${universalword[i].toUpperCase()}` + " " + showword.substring(i*3+3)
                 console.log(newstr)
                 showword = newstr
