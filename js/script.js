@@ -28,12 +28,13 @@ let showword = ""
 let universalword = ""
 let arr = ""
 msg.style.display = "none"
+alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 for (let i = 0; i < 26; i++) {
     let button = document.createElement("button")
     button.classList.add("btn")
-    button.innerHTML = String.fromCharCode(65 + i)
+    button.innerHTML = alfabeto[i]
     cont.appendChild(button)
 }
 
